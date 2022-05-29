@@ -2,7 +2,8 @@ using System;
 using System.Net;  
 using System.Net.Sockets;  
 using System.Text;  
-  
+using System.Threading;
+
 public class SynchronousSocketListener {  
   
     // Incoming data from the client.  
@@ -43,11 +44,13 @@ public class SynchronousSocketListener {
   
                 // An incoming connection needs to be processed.  
                 while (true) {  
-                    string[] cmd = { "0", "1", "2", "3"};
+                    string[] cmd = {"1", "4"};
                     foreach (string s in cmd)
                     {
                         SendMessage(s, handler);
+                        Thread.Sleep(100);
                     }
+                    
                 }  
                 // handler.Shutdown(SocketShutdown.Both);  
                 // handler.Close();  
