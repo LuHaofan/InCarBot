@@ -2,7 +2,8 @@ using System;
 using System.Net;  
 using System.Net.Sockets;  
 using System.Text;  
-  
+using System.Threading;
+
 public class SynchronousSocketListener {  
   
     // Incoming data from the client.  
@@ -20,8 +21,8 @@ public class SynchronousSocketListener {
         // Establish the local endpoint for the socket.  
         // Dns.GetHostName returns the name of the
         // host running the application.  
-        // IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());  
-        IPAddress ipAddress = Dns.GetHostAddresses("localhost")[0];  
+        IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());  
+        IPAddress ipAddress = ipHostInfo.AddressList[0];  
         IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);  
   
         // Create a TCP/IP socket.  
@@ -43,21 +44,13 @@ public class SynchronousSocketListener {
   
                 // An incoming connection needs to be processed.  
                 while (true) {  
-                    data = "1";
-                    SendMessage(data, handler);
-                    // Echo the data back to the client.  
-                    // byte[] msg = Encoding.ASCII.GetBytes(data);  
-                    // Console.WriteLine( "Text Sent : {0}", data);  
-                    // handler.Send(msg);  
-
-                    // int bytesRec = handler.Receive(bytes);  
-                    // data = Encoding.ASCII.GetString(bytes,0,bytesRec);  
-
-                    // // Show the data on the console.  
-                    // Console.WriteLine( "Text received : {0}", data);  
-                    // if (data.IndexOf("<EOF>") > -1) {  
-                    //     break;  
-                    // }  
+                    string[] cmd = {"1", "4"};
+                    foreach (string s in cmd)
+                    {
+                        SendMessage(s, handler);
+                        Thread.Sleep(100);
+                    }
+                    
                 }  
                 // handler.Shutdown(SocketShutdown.Both);  
                 // handler.Close();  
