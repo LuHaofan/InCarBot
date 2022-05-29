@@ -3,7 +3,7 @@ import serial
 import time
 import socket
 
-HOST = "192.168.1.162"  # The server's hostname or IP address
+HOST = "192.168.1.236"  # The server's hostname or IP address
 PORT = 11000  # The port used by the server
 
 if __name__ == '__main__':
@@ -27,4 +27,4 @@ if __name__ == '__main__':
                 print(line)
                 ser.reset_input_buffer()
 
-            time.sleep(1)
+            time.sleep(0.1)
