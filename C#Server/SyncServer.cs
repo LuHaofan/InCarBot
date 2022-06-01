@@ -44,7 +44,7 @@ public class SynchronousSocketListener {
   
                 // An incoming connection needs to be processed.  
                 while (true) {  
-                    string[] cmd = {"1", "4"};
+                    string[] cmd = {"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"};
                     foreach (string s in cmd)
                     {
                         SendMessage(s, handler);
